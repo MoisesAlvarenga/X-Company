@@ -22,7 +22,7 @@ O projeto XCompany é um sistema de gestão de vendas desenvolvido em C# utiliza
 
 ## Tecnologias Utilizadas
 
-- C# (.NET Framework)
+- C# (.NET 8)
 - Windows Forms (WinForms)
 - Entity Framework Core (para acesso a dados)
 - Visual Studio 2022
@@ -45,13 +45,15 @@ O projeto está estruturado da seguinte forma:
 ## Instalação e Configuração
 
 1. **Requisitos**
-   - Visual Studio 2022 (ou versão compatível com .NET Framework)
-   - SQL Server (ou outro banco de dados suportado pelo Entity Framework)
+   - Visual Studio 2022 (ou versão compatível com .NET 8)
+   - [.Net Versão 8](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.302-windows-x64-installer)
+   - Docker para rodar o banco em um container
+   - Se houver alguma dúvida na intalação do Docker, tenho disponibilizado um tutorial no seguinte link: .[Como usar o Docker](https://www.youtube.com/watch?v=7JvOHTMPmJQ&t).
 
 2. **Configuração do Projeto**
    - Clone o repositório para sua máquina local.
    - Abra o projeto no Visual Studio.
-   - Verifique e configure a conexão com o banco de dados no arquivo de configuração (`app.config` ou `web.config`).
+   - Rode o comando docker compose -f "docker_compose.yml" up -d --build
 
 3. **Execução**
    - Compile o projeto e execute a aplicação (`F5` no Visual Studio).
@@ -66,11 +68,7 @@ Contribuições são bem-vindas! Se você deseja contribuir para o projeto, por 
 3. Commit suas mudanças (`git commit -am 'Adicionando a funcionalidade MinhaFeature'`).
 4. Push para a branch (`git push origin feature/MinhaFeature`).
 5. Abra um Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT) - veja o arquivo LICENSE.md para mais detalhes.
-
+6. 
 ---
 
 © 2024 XCompany. Todos os direitos reservados.
