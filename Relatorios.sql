@@ -32,3 +32,22 @@ ORDER BY
     TotalSold DESC;
 
 -- Relatório de vendas por cliente
+
+SELECT
+    c.Name AS CustomerName,
+    COUNT(*) AS TotalSales,
+    SUM(si.Amount) AS TotalItemsSold,
+    SUM(p.Price * si.Amount) AS TotalRevenue
+FROM
+    Sales s
+JOIN
+    SaleItems si ON s.Id = si.SaleId
+JOIN
+    Products p ON si.ProductId = p.Id
+JOIN
+    CustomerEntity c ON s.CostumerId = c.Id
+GROUP BY
+    c.Name
+ORDER BY
+    TotalRevenue DESC;
+
