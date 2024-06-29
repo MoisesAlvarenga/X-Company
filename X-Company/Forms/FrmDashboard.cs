@@ -2,22 +2,22 @@ using XCompany;
 using XCompany.Data.Entities;
 using XCompany.Services;
 
-namespace WinFormsApp1
+namespace XCompany
 {
     public partial class frmDashboard : Form
     {
-        // Declaração de variáveis para armazenar as instâncias dos formulários de produtos, clientes e vendas.
+        // Declaraï¿½ï¿½o de variï¿½veis para armazenar as instï¿½ncias dos formulï¿½rios de produtos, clientes e vendas.
         private ProductForms _productForm;
         private CustomerForm _customerForm;
         private FrmSale _saleForm;
         private List<Sale> _sales = new List<Sale>();
 
-        // Declaração de serviços que serão injetados via construtor para manipulação de vendas, produtos e clientes.
+        // Declaraï¿½ï¿½o de serviï¿½os que serï¿½o injetados via construtor para manipulaï¿½ï¿½o de vendas, produtos e clientes.
         private readonly ISaleService _saleService;
         private readonly IProductService _productService;
         private readonly ICustomerService _customerService;
 
-        // Construtor do frmDashboard, onde os serviços são injetados e o componente é inicializado.
+        // Construtor do frmDashboard, onde os serviï¿½os sï¿½o injetados e o componente ï¿½ inicializado.
         public frmDashboard(IProductService productService, ICustomerService customerService, ISaleService saleService)
         {
             _productService = productService;
@@ -26,16 +26,16 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        // Método assíncrono para carregar as vendas no ListView.
+        // Mï¿½todo assï¿½ncrono para carregar as vendas no ListView.
         private async Task LoadListViewSalesAsync()
         {
             // Limpa os itens existentes no ListView.
             listViewSale.Items.Clear();
 
-            // Obtém todas as vendas com itens e clientes associados de forma assíncrona.
+            // Obtï¿½m todas as vendas com itens e clientes associados de forma assï¿½ncrona.
             var sales = await _saleService.GetAllWithSaleItemsAndCustomerAsync();
 
-            // Obtém os IDs dos produtos das vendas.
+            // Obtï¿½m os IDs dos produtos das vendas.
             var productIds = sales.SelectMany(s => s.Saleitems.Select(si => si.Productid)).Distinct().ToList();
             // Filtra os produtos com base nos IDs obtidos.
             var productList = await _productService.FilterByAsync(x => productIds.Contains(x.Id));
@@ -43,8 +43,8 @@ namespace WinFormsApp1
             // Itera sobre cada venda.
             foreach (var sale in sales)
             {
-                // Cria um item para o ListView com o nome do cliente ou "Cliente não encontrado".
-                ListViewItem item = new ListViewItem(sale?.Customer?.Name ?? "Cliente não encontrado");
+                // Cria um item para o ListView com o nome do cliente ou "Cliente nï¿½o encontrado".
+                ListViewItem item = new ListViewItem(sale?.Customer?.Name ?? "Cliente nï¿½o encontrado");
 
                 // Adiciona a data da venda como subitem.
                 item.SubItems.Add(sale.Saledate.ToString("dd/MM/yyyy"));
@@ -53,13 +53,13 @@ namespace WinFormsApp1
                 int totalAmount = sale.Saleitems.Sum(x => x.Amount);
                 item.SubItems.Add(totalAmount.ToString());
 
-                // Obtém IDs únicos dos produtos vendidos.
+                // Obtï¿½m IDs ï¿½nicos dos produtos vendidos.
                 var uniqueProductIds = sale.Saleitems.Select(si => si.Productid).Distinct().ToList();
 
-                // Filtra os produtos atuais com base nos IDs únicos.
+                // Filtra os produtos atuais com base nos IDs ï¿½nicos.
                 var currentProducts = productList.Where(p => uniqueProductIds.Contains(p.Id)).ToList();
 
-                // Calcula o preço total da venda e adiciona como subitem.
+                // Calcula o preï¿½o total da venda e adiciona como subitem.
                 decimal totalPrice = sale.Saleitems.Sum(si =>
                 {
                     var product = currentProducts.FirstOrDefault(p => p.Id == si.Productid);
@@ -72,7 +72,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Evento para abrir o formulário de vendas ao clicar no botão "Fazer Venda".
+        // Evento para abrir o formulï¿½rio de vendas ao clicar no botï¿½o "Fazer Venda".
         private void btnMakeSale_Click(object sender, EventArgs e)
         {
             if (_saleForm == null || _saleForm.IsDisposed)
@@ -86,7 +86,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Evento para abrir o formulário de produtos ao clicar no item de menu "Produtos".
+        // Evento para abrir o formulï¿½rio de produtos ao clicar no item de menu "Produtos".
         private void toolStripMenuItemProducts_Click(object sender, EventArgs e)
         {
             if (_productForm == null || _productForm.IsDisposed)
@@ -100,7 +100,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Evento para abrir o formulário de clientes ao clicar no item de menu "Clientes".
+        // Evento para abrir o formulï¿½rio de clientes ao clicar no item de menu "Clientes".
         private void toolStripMenuItemCustomers_Click(object sender, EventArgs e)
         {
             if (_customerForm == null || _customerForm.IsDisposed)
@@ -114,7 +114,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Evento para gerenciar atalhos de teclado e abrir os formulários correspondentes.
+        // Evento para gerenciar atalhos de teclado e abrir os formulï¿½rios correspondentes.
         private void saleForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -131,7 +131,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Evento para carregar as vendas ao iniciar o formulário.
+        // Evento para carregar as vendas ao iniciar o formulï¿½rio.
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             LoadListViewSalesAsync();

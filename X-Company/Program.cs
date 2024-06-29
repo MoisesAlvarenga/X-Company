@@ -1,12 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using XCompany.Data.Repositories;
-using XCompany;
 using XCompany.DataContext;
 using XCompany.Services;
 using Microsoft.Extensions.Configuration;
 
-namespace WinFormsApp1
+namespace XCompany
 {
     internal static class Program
     {
@@ -18,14 +17,14 @@ namespace WinFormsApp1
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
-            // Criar provedor de serviços
+            // Criar provedor de serviï¿½os
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             // Inicializar o contexto do banco de dados
             var dbContext = serviceProvider.GetRequiredService<XCompanyContext>();
             dbContext.Database.EnsureCreated(); // Garantir que o banco de dados existe
 
-            // Iniciar a aplicação Windows Forms
+            // Iniciar a aplicaï¿½ï¿½o Windows Forms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(serviceProvider.GetRequiredService<frmDashboard>());
@@ -45,13 +44,13 @@ namespace WinFormsApp1
                 options.UseNpgsql(connectionString), ServiceLifetime.Transient);
 
             services.AddScoped<DbContext>();
-            // Registrar repositórios
+            // Registrar repositï¿½rios
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISaleService, SaleService>();
 
-            // Registrar formulários
+            // Registrar formulï¿½rios
             services.AddScoped<CustomerForm>();
             services.AddScoped<ProductForms>();
             services.AddScoped<frmDashboard>();

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XCompany", "WinFormsApp1\XCompany.csproj", "{0E84DCBD-4D08-4FE3-938D-B0A658D6A5B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XCompany", "X-Company\XCompany.csproj", "{0E84DCBD-4D08-4FE3-938D-B0A658D6A5B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X-Company.Tests", "X-Company.Tests\X-Company.Tests.csproj", "{CA586281-E566-4560-B638-1DD87CA40626}"
 EndProject

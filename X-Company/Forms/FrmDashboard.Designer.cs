@@ -1,6 +1,6 @@
 ﻿
 
-namespace WinFormsApp1
+namespace XCompany
 {
     partial class frmDashboard
     {

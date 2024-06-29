@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moise\\source\\repos\\X-Company\\WinFormsApp1\\XCompany.csproj": {}
+    "C:\\Users\\moise\\source\\repos\\X-Company\\X-Company\\XCompany.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moise\\source\\repos\\X-Company\\WinFormsApp1\\XCompany.csproj": {
+    "C:\\Users\\moise\\source\\repos\\X-Company\\X-Company\\XCompany.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moise\\source\\repos\\X-Company\\WinFormsApp1\\XCompany.csproj",
+        "projectUniqueName": "C:\\Users\\moise\\source\\repos\\X-Company\\X-Company\\XCompany.csproj",
         "projectName": "XCompany",
-        "projectPath": "C:\\Users\\moise\\source\\repos\\X-Company\\WinFormsApp1\\XCompany.csproj",
+        "projectPath": "C:\\Users\\moise\\source\\repos\\X-Company\\X-Company\\XCompany.csproj",
         "packagesPath": "C:\\Users\\moise\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moise\\source\\repos\\X-Company\\WinFormsApp1\\_intermediate_\\",
+        "outputPath": "C:\\Users\\moise\\source\\repos\\X-Company\\X-Company\\_intermediate_\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moise\\AppData\\Roaming\\NuGet\\NuGet.Config",
