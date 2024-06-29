@@ -54,6 +54,7 @@ O projeto está estruturado da seguinte forma:
    - Clone o repositório para sua máquina local.
    - Abra o projeto no Visual Studio.
    - Rode o comando docker compose -f "docker_compose.yml" up -d --build
+   - Os arquivos de criação e inserção SQL está na pasta Sql na raíz do projeto, mas não se preocupe em rodalo, ao levantar o container, eles serão executados de forma automática.
 
 3. **Execução**
    - Compile o projeto e execute a aplicação (`F5` no Visual Studio).
