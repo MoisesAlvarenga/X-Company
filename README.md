@@ -48,7 +48,7 @@ O projeto está estruturado da seguinte forma:
    - Visual Studio 2022 (ou versão compatível com .NET 8)
    - [.Net Versão 8](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.302-windows-x64-installer)
    - Docker para rodar o banco em um container
-   - Se houver alguma dúvida na intalação do Docker, tenho disponibilizado um tutorial no seguinte link: .[Como usar o Docker](https://www.youtube.com/watch?v=7JvOHTMPmJQ&t).
+   - Se houver alguma dúvida na intalação do Docker, tenho disponibilizado um mostrando [como usar o Docker](https://www.youtube.com/watch?v=7JvOHTMPmJQ&t)
 
 2. **Configuração do Projeto**
    - Clone o repositório para sua máquina local.
