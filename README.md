@@ -26,7 +26,7 @@ O projeto XCompany é um sistema de gestão de vendas desenvolvido em C# utiliza
 - Windows Forms (WinForms)
 - Entity Framework Core (para acesso a dados)
 - Visual Studio 2022
-- SQL Server (ou outro banco de dados suportado pelo Entity Framework)
+- Postgres (Versão 13)
 
 ## Estrutura do Projeto
 
