@@ -31,11 +31,11 @@ namespace XCompany.Tests
             // Arrange
             var sale = new Sale
             {
-                Saledate = DateTime.Now,
-                Saleitems = new List<Saleitem>
+                SaleDate = DateTime.Now,
+                SaleItems = new List<Saleitem>
                 {
-                    new Saleitem { Productid = 1, Amount = 2 },
-                    new Saleitem { Productid = 2, Amount = 1 }
+                    new Saleitem { ProductId = 1, Amount = 2 },
+                    new Saleitem { ProductId = 2, Amount = 1 }
                 }
             };
 
@@ -55,7 +55,7 @@ namespace XCompany.Tests
         public async Task AddSaleAsync_ShouldThrowArgumentException_WhenSaleDateIsInvalid()
         {
             // Arrange
-            var sale = new Sale { Saledate = DateTime.MinValue }; // Data de venda inválida
+            var sale = new Sale { SaleDate = DateTime.MinValue }; // Data de venda inválida
 
             // Act & Assert
             var exception = await Assert.ThrowsAsync<ArgumentException>(async () => await _saleService.AddAsync(sale));
@@ -69,7 +69,7 @@ namespace XCompany.Tests
         public async Task AddSaleAsync_ShouldThrowArgumentException_WhenSaleItemsAreEmpty()
         {
             // Arrange
-            var sale = new Sale { Saledate = DateTime.Now, Saleitems = new List<Saleitem>() };
+            var sale = new Sale { SaleDate = DateTime.Now, SaleItems = new List<Saleitem>() };
 
             // Act & Assert
             var exception = await Assert.ThrowsAsync<ArgumentException>(async () => await _saleService.AddAsync(sale));
@@ -84,7 +84,7 @@ namespace XCompany.Tests
         {
             // Arrange
             var saleId = 1;
-            var expectedSale = new Sale { Id = saleId, Saledate = DateTime.Now };
+            var expectedSale = new Sale { Id = saleId, SaleDate = DateTime.Now };
             _repositoryMock.Setup(repo => repo.GetByIdAsync(saleId)).ReturnsAsync(expectedSale);
 
             // Act
@@ -120,8 +120,8 @@ namespace XCompany.Tests
             // Arrange
             var sales = new List<Sale>
             {
-                new Sale { Id = 1, Saledate = DateTime.Now },
-                new Sale { Id = 2, Saledate = DateTime.Now }
+                new Sale { Id = 1, SaleDate = DateTime.Now },
+                new Sale { Id = 2, SaleDate = DateTime.Now }
             };
 
             _repositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(sales);
@@ -141,11 +141,11 @@ namespace XCompany.Tests
         {
             // Arrange
             var saleId = 1;
-            var saleItem = new Saleitem { Productid = 1, Amount = 2 };
+            var saleItem = new Saleitem { ProductId = 1, Amount = 2 };
             var listSaleItems = new List<Saleitem>();
             listSaleItems.Add(saleItem);
-            var existingSale = new Sale { Id = saleId, Saledate = DateTime.Now, Saleitems = listSaleItems };
-            var updatedSale = new Sale { Id = saleId, Saledate = DateTime.Now.AddDays(1), Saleitems = listSaleItems };
+            var existingSale = new Sale { Id = saleId, SaleDate = DateTime.Now, SaleItems = listSaleItems };
+            var updatedSale = new Sale { Id = saleId, SaleDate = DateTime.Now.AddDays(1), SaleItems = listSaleItems };
 
             _repositoryMock.Setup(repo => repo.GetByIdAsync(saleId)).ReturnsAsync(existingSale);
             _repositoryMock.Setup(repo => repo.Update(updatedSale)).Returns(Task.CompletedTask);
@@ -165,10 +165,10 @@ namespace XCompany.Tests
         {
             // Arrange
             var saleId = 1;
-            var saleItem = new Saleitem { Productid = 1, Amount = 2 };
+            var saleItem = new Saleitem { ProductId = 1, Amount = 2 };
             var listSaleItems = new List<Saleitem>();
             listSaleItems.Add(saleItem);
-            var updatedSale = new Sale { Id = saleId, Saledate = DateTime.Now, Saleitems = listSaleItems };
+            var updatedSale = new Sale { Id = saleId, SaleDate = DateTime.Now, SaleItems = listSaleItems };
 
             _repositoryMock.Setup(repo => repo.GetByIdAsync(saleId)).ReturnsAsync((Sale)null);
 
@@ -185,7 +185,7 @@ namespace XCompany.Tests
         {
             // Arrange
             var saleId = 1;
-            var existingSale = new Sale { Id = saleId, Saledate = DateTime.Now };
+            var existingSale = new Sale { Id = saleId, SaleDate = DateTime.Now };
 
             _repositoryMock.Setup(repo => repo.GetByIdAsync(saleId)).ReturnsAsync(existingSale);
             _repositoryMock.Setup(repo => repo.Remove(existingSale));
@@ -205,7 +205,7 @@ namespace XCompany.Tests
         {
             // Arrange
             var saleId = 1;
-            var existingSale = new Sale { Id = saleId, Saledate = DateTime.Now };
+            var existingSale = new Sale { Id = saleId, SaleDate = DateTime.Now };
 
             _repositoryMock.Setup(repo => repo.GetByIdAsync(saleId)).ReturnsAsync((Sale)null);
 
@@ -223,9 +223,9 @@ namespace XCompany.Tests
             // Arrange
             var saleItems = new List<Saleitem>
             {
-                new Saleitem { Id = 1, Saleid = 1, Amount = 2 },
-                new Saleitem { Id = 2, Saleid = 1, Amount = 3 },
-                new Saleitem { Id = 3, Saleid = 2, Amount = 1 }
+                new Saleitem { Id = 1, SaleId = 1, Amount = 2 },
+                new Saleitem { Id = 2, SaleId = 1, Amount = 3 },
+                new Saleitem { Id = 3, SaleId = 2, Amount = 1 }
             };
 
             var customer1 = new Customer
@@ -242,8 +242,8 @@ namespace XCompany.Tests
 
             var sales = new List<Sale>
             {
-                new Sale { Id = 1, Customerid = 1, Saledate = new DateTime(2023, 6, 1), Customer = customer1, Saleitems = saleItems.Where(x => x.Saleid == 1).ToList() },
-                new Sale { Id = 2, Customerid = 2, Saledate = new DateTime(2023, 6, 2), Customer = customer2, Saleitems = saleItems.Where(x => x.Saleid == 2).ToList() }
+                new Sale { Id = 1, CustomerId = 1, SaleDate = new DateTime(2023, 6, 1), Customer = customer1, SaleItems = saleItems.Where(x => x.SaleId == 1).ToList() },
+                new Sale { Id = 2, CustomerId = 2, SaleDate = new DateTime(2023, 6, 2), Customer = customer2, SaleItems = saleItems.Where(x => x.SaleId == 2).ToList() }
             };
 
             _repositoryMock.Setup(repo => repo.GetAllWithIncludeAsync(
@@ -259,13 +259,13 @@ namespace XCompany.Tests
 
             // Assert para a primeira venda
             var firstSale = result.First();
-            Assert.Equal(2, firstSale.Saleitems.Count());
+            Assert.Equal(2, firstSale.SaleItems.Count());
             Assert.NotNull(firstSale.Customer);
             Assert.Equal("John Doe", firstSale.Customer.Name); // Garante que os detalhes do Cliente estão corretos
 
             // Assert para a segunda venda
             var secondSale = result.Last();
-            Assert.Equal(1, secondSale.Saleitems.Count());
+            Assert.Equal(1, secondSale.SaleItems.Count());
             Assert.NotNull(secondSale.Customer);
             Assert.Equal("John Smith", secondSale.Customer.Name); // Garante que os detalhes do Cliente estão corretos
 

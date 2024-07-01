@@ -2,9 +2,9 @@
 
 public partial class Saleitem : BaseEntity
 {
-    public int Saleid { get; set; }
+    public int SaleId { get; set; }
 
-    public int Productid { get; set; }
+    public int ProductId { get; set; }
 
     public int Amount { get; set; }
 

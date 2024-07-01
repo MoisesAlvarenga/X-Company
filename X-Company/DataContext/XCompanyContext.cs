@@ -84,34 +84,34 @@ public partial class XCompanyContext : DbContext
             entity.ToTable("sales");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Customerid).HasColumnName("customerid");
+            entity.Property(e => e.CustomerId).HasColumnName("customerid");
             entity.Property(e => e.CreatedAt)
                 .HasColumnType("timestamp with time zone")
                 .HasColumnName("createdat")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")  // Valor padrão no banco de dados
                 .ValueGeneratedOnAdd(); ;
-            entity.Property(e => e.Saledate)
+            entity.Property(e => e.SaleDate)
                 .HasColumnType("timestamp")
                 .HasColumnName("saledate");
 
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.Sales)
-                .HasForeignKey(d => d.Customerid)
+                .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_sales_customers");
 
-            entity.HasMany(e => e.Saleitems)
+            entity.HasMany(e => e.SaleItems)
             .WithOne(e => e.Sale)
-            .HasForeignKey(e => e.Saleid)
+            .HasForeignKey(e => e.SaleId)
             .OnDelete(DeleteBehavior.Cascade) // Dependendo do comportamento desejado
             .HasConstraintName("fk_saleitems_sales");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Sales)
-                .HasForeignKey(d => d.Customerid)
+                .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_sale_customers");
 
-            entity.Navigation(e => e.Saleitems)
+            entity.Navigation(e => e.SaleItems)
             .UsePropertyAccessMode(PropertyAccessMode.Field) // Modo de acesso às propriedades
             .AutoInclude();
         });
@@ -120,12 +120,12 @@ public partial class XCompanyContext : DbContext
         {
             entity.Ignore(e => e.Id); // Ignora o campo Id
 
-            entity.HasKey(e => new { e.Saleid, e.Productid }).HasName("pk_saleitems");
+            entity.HasKey(e => new { e.SaleId, e.ProductId }).HasName("pk_saleitems");
 
             entity.ToTable("saleitems");
 
-            entity.Property(e => e.Saleid).HasColumnName("saleid");
-            entity.Property(e => e.Productid).HasColumnName("productid");
+            entity.Property(e => e.SaleId).HasColumnName("saleid");
+            entity.Property(e => e.ProductId).HasColumnName("productid");
             entity.Property(e => e.Amount).HasColumnName("amount");
 
             entity.Property(e => e.CreatedAt)
@@ -134,13 +134,13 @@ public partial class XCompanyContext : DbContext
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")  // Valor padrão no banco de dados
                 .ValueGeneratedOnAdd();
 
-            entity.HasOne(d => d.Product).WithMany(p => p.Saleitems)
-                .HasForeignKey(d => d.Productid)
+            entity.HasOne(d => d.Product).WithMany(p => p.SaleItems)
+                .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_saleitems_products");
 
-            entity.HasOne(d => d.Sale).WithMany(p => p.Saleitems)
-                .HasForeignKey(d => d.Saleid)
+            entity.HasOne(d => d.Sale).WithMany(p => p.SaleItems)
+                .HasForeignKey(d => d.SaleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_saleitems_sales");
         });

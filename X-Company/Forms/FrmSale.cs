@@ -62,7 +62,7 @@ namespace XCompany
             if (comboBoxProduct.SelectedItem is Product selectedProduct && numericUpDownAmount.Value > 0)
             {
                 // Verifica se o item já existe na lista e atualiza a quantidade se necessário.
-                var existingItem = _saleItems.FirstOrDefault(si => si.Productid == selectedProduct.Id);
+                var existingItem = _saleItems.FirstOrDefault(si => si.ProductId == selectedProduct.Id);
 
                 if (existingItem != null)
                 {
@@ -79,7 +79,7 @@ namespace XCompany
                 {
                     var saleItem = new Saleitem
                     {
-                        Productid = selectedProduct.Id,
+                        ProductId = selectedProduct.Id,
                         Amount = (int)numericUpDownAmount.Value,
                         Product = selectedProduct
                     };
@@ -103,7 +103,7 @@ namespace XCompany
 
             foreach (var item in _saleItems)
             {
-                var product = _products.FirstOrDefault(x => x.Id == item.Productid);
+                var product = _products.FirstOrDefault(x => x.Id == item.ProductId);
                 if (product != null)
                 {
                     var price = product.Price;
@@ -163,9 +163,9 @@ namespace XCompany
             {
                 var sale = new Sale
                 {
-                    Customerid = selectedCustomer.Id,
-                    Saledate = DateTime.Now,
-                    Saleitems = _saleItems,
+                    CustomerId = selectedCustomer.Id,
+                    SaleDate = DateTime.Now,
+                    SaleItems = _saleItems,
                     Customer = null
                 };
                 try
@@ -173,7 +173,7 @@ namespace XCompany
                     await _saleService.AddAsync(sale);
                     foreach (var saleItem in _saleItems)
                     {
-                        var product = _products.FirstOrDefault(x => x.Id == saleItem.Productid);
+                        var product = _products.FirstOrDefault(x => x.Id == saleItem.ProductId);
                         if (product != null)
                         {
                             product.Stock -= saleItem.Amount;

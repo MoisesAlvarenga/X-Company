@@ -101,7 +101,7 @@
             btnSaveProduct.Name = "btnSaveProduct";
             btnSaveProduct.Size = new Size(75, 23);
             btnSaveProduct.TabIndex = 6;
-            btnSaveProduct.Text = "&Salvar";
+            btnSaveProduct.Text = "&Salvar (F4)";
             btnSaveProduct.UseVisualStyleBackColor = true;
             btnSaveProduct.Click += btnSaveProduct_Click;
             // 
@@ -148,7 +148,7 @@
             btnDeleteProduct.Name = "btnDeleteProduct";
             btnDeleteProduct.Size = new Size(75, 23);
             btnDeleteProduct.TabIndex = 7;
-            btnDeleteProduct.Text = "Deletar";
+            btnDeleteProduct.Text = "&Deletar (F2)";
             btnDeleteProduct.UseVisualStyleBackColor = true;
             btnDeleteProduct.Click += btnDeleteProduct_Click;
             // 
@@ -158,7 +158,7 @@
             btnNewProduct.Name = "btnNewProduct";
             btnNewProduct.Size = new Size(75, 23);
             btnNewProduct.TabIndex = 0;
-            btnNewProduct.Text = "Novo";
+            btnNewProduct.Text = "&Novo (F1)";
             btnNewProduct.UseVisualStyleBackColor = true;
             btnNewProduct.Click += btnNewProduct_Click;
             // 

@@ -10,5 +10,5 @@ public partial class Product : BaseEntity
 
     public int Stock { get; set; }
 
-    public virtual ICollection<Saleitem> Saleitems { get; set; } = new List<Saleitem>();
+    public virtual ICollection<Saleitem> SaleItems { get; set; } = new List<Saleitem>();
 }

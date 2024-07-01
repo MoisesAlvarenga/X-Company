@@ -36,7 +36,7 @@ namespace XCompany
             var sales = await _saleService.GetAllWithSaleItemsAndCustomerAsync();
 
             // Obt�m os IDs dos produtos das vendas.
-            var productIds = sales.SelectMany(s => s.Saleitems.Select(si => si.Productid)).Distinct().ToList();
+            var productIds = sales.SelectMany(s => s.SaleItems.Select(si => si.ProductId)).Distinct().ToList();
             // Filtra os produtos com base nos IDs obtidos.
             var productList = await _productService.FilterByAsync(x => productIds.Contains(x.Id));
 
@@ -47,22 +47,22 @@ namespace XCompany
                 ListViewItem item = new ListViewItem(sale?.Customer?.Name ?? "Cliente n�o encontrado");
 
                 // Adiciona a data da venda como subitem.
-                item.SubItems.Add(sale.Saledate.ToString("dd/MM/yyyy"));
+                item.SubItems.Add(sale.SaleDate.ToString("dd/MM/yyyy"));
 
                 // Calcula o total de itens vendidos e adiciona como subitem.
-                int totalAmount = sale.Saleitems.Sum(x => x.Amount);
+                int totalAmount = sale.SaleItems.Sum(x => x.Amount);
                 item.SubItems.Add(totalAmount.ToString());
 
                 // Obt�m IDs �nicos dos produtos vendidos.
-                var uniqueProductIds = sale.Saleitems.Select(si => si.Productid).Distinct().ToList();
+                var uniqueProductIds = sale.SaleItems.Select(si => si.ProductId).Distinct().ToList();
 
                 // Filtra os produtos atuais com base nos IDs �nicos.
                 var currentProducts = productList.Where(p => uniqueProductIds.Contains(p.Id)).ToList();
 
                 // Calcula o pre�o total da venda e adiciona como subitem.
-                decimal totalPrice = sale.Saleitems.Sum(si =>
+                decimal totalPrice = sale.SaleItems.Sum(si =>
                 {
-                    var product = currentProducts.FirstOrDefault(p => p.Id == si.Productid);
+                    var product = currentProducts.FirstOrDefault(p => p.Id == si.ProductId);
                     return (product?.Price ?? 0) * si.Amount;
                 });
                 item.SubItems.Add(totalPrice.ToString("F2"));

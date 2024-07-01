@@ -2,12 +2,12 @@
 
 public partial class Sale : BaseEntity
 {
-    public int Customerid { get; set; }
+    public int CustomerId { get; set; }
 
-    public DateTime Saledate { get; set; }
+    public DateTime SaleDate { get; set; }
 
     public virtual Customer Customer { get; set; } = new Customer();
 
-    public virtual ICollection<Saleitem> Saleitems { get; set; } = new List<Saleitem>();
+    public virtual ICollection<Saleitem> SaleItems { get; set; } = new List<Saleitem>();
 
 }

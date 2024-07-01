@@ -45,7 +45,7 @@ namespace XCompany.Services
         public async Task<IEnumerable<Sale>> GetAllWithSaleItemsAndCustomerAsync()
         {
             var sales = await _saleRepository.GetAllWithIncludeAsync(
-                s => s.Saleitems,   // Incluir Saleitem
+                s => s.SaleItems,   // Incluir Saleitem
                 s => s.Customer     // Incluir Customer
             );
 
@@ -78,7 +78,7 @@ namespace XCompany.Services
                 throw new ArgumentException("Venda não encontrada.");
             }
 
-            existingSale.Saledate = sale.Saledate;
+            existingSale.SaleDate = sale.SaleDate;
             _saleRepository.Update(existingSale);
         }
 
@@ -104,19 +104,19 @@ namespace XCompany.Services
         /// <param name="sale">Venda a ser validada.</param>
         private void ValidateSale(Sale sale)
         {
-            if (sale.Saledate == default)
+            if (sale.SaleDate == default)
             {
                 throw new ArgumentException("A data da venda é inválida.");
             }
 
-            if (sale.Saleitems == null || !sale.Saleitems.Any())
+            if (sale.SaleItems == null || !sale.SaleItems.Any())
             {
                 throw new ArgumentException("A venda deve conter pelo menos um item.");
             }
 
-            if (sale.Saleitems != null)
+            if (sale.SaleItems != null)
             {
-                foreach (var saleitem in sale.Saleitems)
+                foreach (var saleitem in sale.SaleItems)
                 {
                     if (saleitem.Amount <= 0)
                     {
